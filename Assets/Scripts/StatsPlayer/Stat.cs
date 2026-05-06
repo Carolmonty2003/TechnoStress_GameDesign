@@ -26,8 +26,7 @@ public class Stat
 
     public void Add(float amount) => Value += amount;
 
-    /* checks if value crossed a threshold going up or down,
-       useful for triggering warnings only once */
+    /* if value is greater than threshold trigger endgame */
     public bool CrossedAbove(float threshold, float previous) =>
         previous < threshold && _value >= threshold;
 

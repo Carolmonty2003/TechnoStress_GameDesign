@@ -31,7 +31,11 @@ public class PlayerStats : MonoBehaviour
         Instance = this;
     }
 
-    private void Start() => ResetStats();
+    private void Start()
+    {
+        ResetStats();
+    }
+
 
     public void ResetStats()
     {
