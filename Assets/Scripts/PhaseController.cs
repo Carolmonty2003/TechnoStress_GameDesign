@@ -8,9 +8,9 @@ public class PhaseController : Singleton<PhaseController>
     private List<float> currentPhaseDurations;
     private int currentPhaseIndex;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        InitSingleton();
         currentPhaseDurations = phasesDurations;
         currentPhaseIndex = 0;
     }
@@ -22,13 +22,15 @@ public class PhaseController : Singleton<PhaseController>
         return true;
     }
 
-    public void PassPhase()
+    public bool PassPhase()
     {
         currentPhaseIndex++;
-        if(currentPhaseIndex == phasesDurations.Count)
-        {
-            currentPhaseIndex = 0;
-            currentPhaseDurations = phasesDurations;
-        }
+        return currentPhaseIndex == phasesDurations.Count;
+    }
+
+    public void Restart()
+    {
+        currentPhaseDurations = phasesDurations;
+        currentPhaseIndex = 0;
     }
 }
