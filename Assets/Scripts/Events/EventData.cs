@@ -22,4 +22,8 @@ public class EventData : ScriptableObject
     [Header("Choices")]
     [Tooltip("Add 2+ choices. First is usually the 'good' option, last the 'bad' one — but order is up to you.")]
     public List<EventChoice> choices = new();
+
+    [Header("Effects")]
+    [Tooltip("Effects on stats if event isn't handled.")]
+    public float stress = 0, focus = 0, anxiety = 0, physicalHealth = 0, academicProgress = 0, digitalFatigue = 0;
 }
