@@ -5,7 +5,8 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     [SerializeField] private EventUI eventUI;
-    [SerializeField] private List<EventData> events = new();
+    [SerializeField] private SortingEventUI sortingEventUI;
+    [SerializeField] private List<BaseEventData> events = new();
 
     private int currentIndex = 0;
 
@@ -14,10 +15,13 @@ public class EventManager : MonoBehaviour
     private void Start()
     {
         eventUI.OnEventResolved += ShowNextEvent;
+        if (sortingEventUI != null)
+        {
+            sortingEventUI.OnEventResolved += ShowNextEvent;
+        }
         ShowNextEvent();
     }
 
-    // shows current event, or does nothing if the list is done
     private void ShowNextEvent()
     {
         if (currentIndex >= events.Count)
@@ -26,7 +30,24 @@ public class EventManager : MonoBehaviour
             return;
         }
 
-        eventUI.ShowEvent(events[currentIndex]);
+        BaseEventData currentEvent = events[currentIndex];
+        if (currentEvent is EventData choiceEvent)
+        {
+            eventUI.ShowEvent(choiceEvent);
+        }
+        else if (currentEvent is SortingEventData sortingEvent)
+        {
+            if (sortingEventUI != null)
+            {
+                sortingEventUI.ShowEvent(sortingEvent);
+            }
+            else
+            {
+                currentIndex++;
+                ShowNextEvent();
+                return;
+            }
+        }
         currentIndex++;
     }
 
