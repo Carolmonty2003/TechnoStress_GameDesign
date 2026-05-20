@@ -1145,8 +1145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventUI: {fileID: 1367599262}
+  sortingEventUI: {fileID: 0}
   events:
   - {fileID: 11400000, guid: 1a4517f0a87d5f446ae4054bfd487b3c, type: 2}
+  playerStats: {fileID: 744046143}
 --- !u!1 &1367599261
 GameObject:
   m_ObjectHideFlags: 0
