@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -25,6 +26,19 @@ public class PlayerStats : MonoBehaviour
 
     private StatEvents _events => StatEvents.Instance;
 
+    [SerializeField] private TMP_Text moodText;
+
+    public string Mood
+    {
+        get
+        {
+            if (this.Stress.Value >= 90) return "Crítica";
+            else if (this.Stress.Value >= 60) return "Estresada";
+            else if (this.Stress.Value >= 30) return "Normal";
+            else return "Relajada";
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
@@ -34,6 +48,11 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         ResetStats();
+    }
+
+    private void Update()
+    {
+        moodText.text = "Mood: " + Mood;
     }
 
 
