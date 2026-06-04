@@ -22,4 +22,7 @@ public class EventChoice
     [Tooltip("Short message shown after the player picks this choice")]
     [TextArea(2, 4)]
     public string feedbackText;
+
+    [Header("Time spent")]
+    public float timeSpent;
 }

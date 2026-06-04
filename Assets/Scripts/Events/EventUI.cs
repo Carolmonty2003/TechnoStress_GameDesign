@@ -71,6 +71,8 @@ public class EventUI : MonoBehaviour
     // apply stats
     private void OnChoiceSelected(EventChoice choice)
     {
+        PhaseController.Instance.SpendTime(choice.timeSpent);
+
         PlayerStats.Instance.ApplyChanges(
             stress:           choice.stress,
             focus:            choice.focus,

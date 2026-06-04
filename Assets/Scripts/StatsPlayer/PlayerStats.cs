@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -11,6 +13,25 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float startPhysicalHealth = 90f;
     [SerializeField] private float startAcademicProgress = 50f;
     [SerializeField] private float startDigitalFatigue = 0f;
+
+    
+    public float StartStress => startStress;
+    public float StartFocus => startFocus;
+    public float StartAnxiety => startAnxiety;
+    public float StartPhysicalHealth => startPhysicalHealth;
+    public float StartAcademicProgress => startAcademicProgress;
+    public float StartDigitalFatigue => startDigitalFatigue;
+
+    [Header("UI Mood")]
+    [SerializeField] private TMP_Text moodText;
+
+    // 2. Añade la referencia a la imagen de la UI y los sprites que usarás
+    [SerializeField] private Image moodImage;
+    [SerializeField] private Sprite moodSaturacionSprite;
+    [SerializeField] private Sprite moodCansadaSprite;
+    [SerializeField] private Sprite moodNormalSprite;
+    [SerializeField] private Sprite moodEstresadaSprite;
+    [SerializeField] private Sprite moodEnfocadaSprite;
 
     [Header("Thresholds")]
     [SerializeField] private float stressGameOver = 100f;
@@ -25,6 +46,18 @@ public class PlayerStats : MonoBehaviour
 
     private StatEvents _events => StatEvents.Instance;
 
+
+    public string Mood
+    {
+        get
+        {
+            if (this.Stress.Value >= 90) return "Saturacion";
+            else if (this.Stress.Value >= 60) return "Estresada";
+            else if (this.Stress.Value >= 30) return "Normal";
+            else return "Relajada";
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
@@ -34,6 +67,19 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         ResetStats();
+    }
+
+    private void Update()
+    {
+        moodText.text = "Mood: " + Mood;
+
+        if (moodImage != null)
+        {
+            if (this.Stress.Value >= 90) moodImage.sprite = moodSaturacionSprite;
+            else if (this.Stress.Value >= 60) moodImage.sprite = moodEstresadaSprite;
+            else if (this.Stress.Value >= 30) moodImage.sprite = moodCansadaSprite;
+            else moodImage.sprite = moodNormalSprite;
+        }
     }
 
 
