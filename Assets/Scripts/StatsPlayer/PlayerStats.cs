@@ -24,6 +24,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("UI Mood")]
     [SerializeField] private TMP_Text moodText;
+    [SerializeField] private MoodTips moodTips;
 
     // 2. Añade la referencia a la imagen de la UI y los sprites que usarás
     [SerializeField] private Image moodImage;
@@ -82,10 +83,26 @@ public class PlayerStats : MonoBehaviour
 
         if (moodImage != null)
         {
-            if (this.Stress.Value >= 90) moodImage.sprite = moodSaturacionSprite;
-            else if (this.Stress.Value >= 60) moodImage.sprite = moodEstresadaSprite;
-            else if (this.Stress.Value >= 30) moodImage.sprite = moodCansadaSprite;
-            else moodImage.sprite = moodNormalSprite;
+            if (this.Stress.Value >= 90)
+            {
+                moodImage.sprite = moodSaturacionSprite;
+                moodTips.LoadTip(MoodTips.MoodType.SATURATED);
+            }
+            else if (this.Stress.Value >= 60)
+            {
+                moodImage.sprite = moodEstresadaSprite;
+                moodTips.LoadTip(MoodTips.MoodType.STRESSED);
+            }
+            else if (this.Stress.Value >= 30)
+            {
+                moodImage.sprite = moodCansadaSprite;
+                moodTips.LoadTip(MoodTips.MoodType.TIRED);
+            }
+            else
+            {
+                moodImage.sprite = moodNormalSprite;
+                moodTips.LoadTip(MoodTips.MoodType.NORMAL);
+            }
         }
     }
 
