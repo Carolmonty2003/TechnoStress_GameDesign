@@ -11,12 +11,18 @@ public class EventManager : Singleton<EventManager>
     public List<BaseEventData> EventsLeft {  get { return events.GetRange(currentIndex, events.Count - currentIndex); } }
 
     private int currentIndex = 0;
+    private bool _waiting = false;
 
     [SerializeField] PlayerStats playerStats;
 
-    private void Start()
+    private void Awake()
     {
         InitSingleton();
+        events.Sort((a, b) => a.scheduledHour.CompareTo(b.scheduledHour));
+    }
+
+    private void Start()
+    {
         eventUI.OnEventResolved += () => { currentIndex++; };
         eventUI.OnEventResolved += ShowNextEvent;
         if (sortingEventUI != null)
@@ -35,6 +41,17 @@ public class EventManager : Singleton<EventManager>
         }
 
         BaseEventData currentEvent = events[currentIndex];
+
+        if (PhaseController.Instance.CurrentHour < currentEvent.scheduledHour)
+        {
+            if (!_waiting)
+            {
+                _waiting = true;
+                PhaseController.Instance.OnTimeSpent += OnTimeAdvanced;
+            }
+            return;
+        }
+
         if (currentEvent is EventData choiceEvent)
         {
             eventUI.ShowEvent(choiceEvent);
@@ -51,6 +68,16 @@ public class EventManager : Singleton<EventManager>
                 ShowNextEvent();
                 return;
             }
+        }
+    }
+
+    private void OnTimeAdvanced()
+    {
+        if (PhaseController.Instance.CurrentHour >= events[currentIndex].scheduledHour)
+        {
+            PhaseController.Instance.OnTimeSpent -= OnTimeAdvanced;
+            _waiting = false;
+            ShowNextEvent();
         }
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoodTips : MonoBehaviour
 {
@@ -20,10 +21,12 @@ public class MoodTips : MonoBehaviour
     {
         public MoodType type;
         [TextArea(3, 10)] public string text;
+        public Sprite image;
     }
 
     [SerializeField] private List<Tip> tips;
     [SerializeField] private TMP_Text text;
+    [SerializeField] private Image tipImage;
 
     private Dictionary<MoodType, Tip> tipsDict = new Dictionary<MoodType, Tip>();
 
@@ -35,5 +38,15 @@ public class MoodTips : MonoBehaviour
         LoadTip(MoodType.NORMAL);
     }
 
-    public void LoadTip(MoodType mood) => text.text = tipsDict[mood].text;
+    public void LoadTip(MoodType mood)
+    {
+        Tip tip = tipsDict[mood];
+        text.text = tip.text;
+        if (tipImage != null)
+        {
+            tipImage.sprite  = tip.image;
+            tipImage.enabled = tip.image != null;
+        }
+    }
 }
+
