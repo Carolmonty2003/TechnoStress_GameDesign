@@ -10,35 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: HistoryClass
+  m_Name: GroupChatTrabajo
   m_EditorClassIdentifier: 
-  channel: campus
-  senderName: Universidad
-  eventText: 'Clase de Historia
-
-'
+  channel: email
+  senderName: Chat de Grupo
+  eventText: "\xBFQuedamos para el trabajo?"
   stress: 0
   focus: 0
   anxiety: 0
   physicalHealth: 0
-  academicProgress: -10
+  academicProgress: 0
   digitalFatigue: 0
   choices:
   - buttonLabel: Hacerlo ahora
-    stress: 5
-    focus: 10
-    anxiety: 10
-    physicalHealth: 0
-    academicProgress: 15
-    digitalFatigue: 0
-    feedbackText: "Has atendido a la prioridad m\xE1s importante"
-    timeSpent: 120
-  - buttonLabel: "Hacerlo despu\xE9s"
-    stress: 30
-    focus: -15
+    stress: 0
+    focus: -20
     anxiety: 0
     physicalHealth: 0
-    academicProgress: -20
+    academicProgress: -10
+    digitalFatigue: 10
+    feedbackText: "Has atendido algo r\xE1pido, pero no lo m\xE1s importante."
+    timeSpent: 60
+  - buttonLabel: "Hacerlo despu\xE9s"
+    stress: 0
+    focus: 0
+    anxiety: 0
+    physicalHealth: 0
+    academicProgress: 0
     digitalFatigue: 0
-    feedbackText: "Has dejado atr\xE1s una tarea clave"
+    feedbackText: "Has sabido priorizar las tareas m\xE1s relevantes"
     timeSpent: 0

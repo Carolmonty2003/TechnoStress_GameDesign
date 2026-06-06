@@ -30,7 +30,7 @@ MonoBehaviour:
     academicProgress: 30
     digitalFatigue: 20
     feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
-    timeSpent: 180
+    timeSpent: 120
   - buttonLabel: Hacerlo despues
     stress: 20
     focus: -10
