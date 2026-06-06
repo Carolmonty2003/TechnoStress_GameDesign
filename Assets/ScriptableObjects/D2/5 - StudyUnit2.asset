@@ -32,6 +32,7 @@ MonoBehaviour:
     academicProgress: 15
     digitalFatigue: 0
     feedbackText: "Has atendido a la prioridad m\xE1s importante"
+    launchMinigame: 1
     timeSpent: 120
   - buttonLabel: "Hacerlo despu\xE9s"
     stress: 30
@@ -41,4 +42,5 @@ MonoBehaviour:
     academicProgress: -20
     digitalFatigue: 0
     feedbackText: "Has dejado atr\xE1s una tarea clave"
+    launchMinigame: 0
     timeSpent: 0

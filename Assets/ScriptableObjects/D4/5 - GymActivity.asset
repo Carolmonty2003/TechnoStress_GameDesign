@@ -33,6 +33,7 @@ MonoBehaviour:
     digitalFatigue: -20
     feedbackText: "Es importante tomar hacer ejercicio para mantener tu bienestar
       alto. Ayuda a bajar los niveles de ansiedad y estr\xE9s."
+    launchMinigame: 1
     timeSpent: 60
   - buttonLabel: Hacerlo despues
     stress: -30
@@ -43,4 +44,5 @@ MonoBehaviour:
     digitalFatigue: -20
     feedbackText: "Es importante tomar hacer ejercicio para mantener tu bienestar
       alto. Ayuda a bajar los niveles de ansiedad y estr\xE9s."
+    launchMinigame: 0
     timeSpent: 0

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
   m_Name: TareaArteSorpresa
   m_EditorClassIdentifier: 
+  Name: 
+  scheduledHour: 8
   channel: notification
   senderName: Martinez
   eventText: TAREA SORPRESA! . Tienes que entregar un boceto digital antes de medianoche.
@@ -32,6 +34,7 @@ MonoBehaviour:
     digitalFatigue: 20
     feedbackText: "Te concentras, sacas tu tableta y entregas un boceto decente.
       El esfuerzo vali\xF3 la pena: tu progreso acad\xE9mico sube y te sientes capaz."
+    launchMinigame: 1
     timeSpent: 120
   - buttonLabel: ' Hacerlo a medias (modo rush)'
     stress: 25
@@ -42,6 +45,7 @@ MonoBehaviour:
     digitalFatigue: 30
     feedbackText: "Entregas algo a \xFAltimo momento. El profesor nota la falta de
       esfuerzo, pero al menos no un cero. La fatiga digital te pesa."
+    launchMinigame: 0
     timeSpent: 60
   - buttonLabel: No tengo tiempo, la ignoro
     stress: 45
@@ -53,4 +57,5 @@ MonoBehaviour:
     feedbackText: "Un cero en una tarea doble desploma tu progreso acad\xE9mico.
       La culpa y la ansiedad te impiden concentrarte en nada m\xE1s. Hoy ha sido
       un desastre."
+    launchMinigame: 0
     timeSpent: 0
