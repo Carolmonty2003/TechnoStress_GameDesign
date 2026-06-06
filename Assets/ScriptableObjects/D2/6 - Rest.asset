@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: GroupChat
+  m_Name: 6 - Rest
   m_EditorClassIdentifier: 
-  channel: email
-  senderName: Chat de Grupo
-  eventText: "\xBFPuedes pasar los apuntes?"
+  Name: Descanso
+  scheduledHour: 18
+  channel: calendar
+  senderName: Yo
+  eventText: Descanso recomendado
   stress: 0
   focus: 0
   anxiety: 0
@@ -23,20 +25,22 @@ MonoBehaviour:
   digitalFatigue: 0
   choices:
   - buttonLabel: Hacerlo ahora
-    stress: 0
-    focus: -20
-    anxiety: 0
-    physicalHealth: 0
-    academicProgress: -10
-    digitalFatigue: 10
-    feedbackText: "Has atendido algo r\xE1pido, pero no lo m\xE1s importante."
-    timeSpent: 60
-  - buttonLabel: "Hacerlo despu\xE9s"
-    stress: 0
+    stress: -30
     focus: 0
-    anxiety: 0
-    physicalHealth: 0
+    anxiety: -20
+    physicalHealth: 25
     academicProgress: 0
-    digitalFatigue: 0
-    feedbackText: "Has sabido priorizar las tareas m\xE1s relevantes"
+    digitalFatigue: -20
+    feedbackText: "Es importante tomar descansos peri\xF3dicamente para mantener
+      tu bienestar alto"
+    timeSpent: 60
+  - buttonLabel: Hacerlo despues
+    stress: -30
+    focus: 0
+    anxiety: -20
+    physicalHealth: 0
+    academicProgress: 25
+    digitalFatigue: -20
+    feedbackText: "Es importante tomar descansos peri\xF3dicamente para mantener
+      tu bienestar alto"
     timeSpent: 0

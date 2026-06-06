@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
+  m_Name: 4 - HistoryEmail
+  m_EditorClassIdentifier: 
+  Name: "Notificaci\xF3n de Historia"
+  scheduledHour: 13
+  channel: email
+  senderName: Profe Juancho
+  eventText: La entrega cuenta para nota
+  stress: 0
+  focus: 0
+  anxiety: 0
+  physicalHealth: 0
+  academicProgress: 0
+  digitalFatigue: 0
+  choices:
+  - buttonLabel: Hacerlo ahora
+    stress: 10
+    focus: 10
+    anxiety: 10
+    physicalHealth: 0
+    academicProgress: 15
+    digitalFatigue: 5
+    feedbackText: "Es relevante mantenerse atenta a las noticias del campus para
+      no quedarse atr\xE1s"
+    timeSpent: 30
+  - buttonLabel: Hacerlo despues
+    stress: 25
+    focus: -10
+    anxiety: 20
+    physicalHealth: 0
+    academicProgress: -15
+    digitalFatigue: 0
+    feedbackText: "Es relevante mantenerse atenta a las noticias del campus para
+      no quedarse atr\xE1s"
+    timeSpent: 0

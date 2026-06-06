@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
+  m_Name: 2 - AlgebraClass
+  m_EditorClassIdentifier: 
+  Name: 
+  scheduledHour: 11
+  channel: campus
+  senderName: Universidad
+  eventText: 'Clase de Algebra
+
+'
+  stress: 0
+  focus: 0
+  anxiety: 0
+  physicalHealth: 0
+  academicProgress: -10
+  digitalFatigue: 0
+  choices:
+  - buttonLabel: Hacerlo ahora
+    stress: 5
+    focus: 10
+    anxiety: 10
+    physicalHealth: 0
+    academicProgress: 15
+    digitalFatigue: 0
+    feedbackText: "Has atendido a la prioridad m\xE1s importante"
+    timeSpent: 120
+  - buttonLabel: "Hacerlo despu\xE9s"
+    stress: 30
+    focus: -15
+    anxiety: 0
+    physicalHealth: 0
+    academicProgress: -20
+    digitalFatigue: 0
+    feedbackText: "Has dejado atr\xE1s una tarea clave"
+    timeSpent: 0

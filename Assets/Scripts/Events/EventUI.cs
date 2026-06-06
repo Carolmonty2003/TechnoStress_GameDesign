@@ -8,6 +8,7 @@ using TMPro;
 public class EventUI : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private GameObject eventPanel;
     [SerializeField] private Image channelIcon;
     [SerializeField] private TMP_Text senderText;
     [SerializeField] private TMP_Text eventText;
@@ -22,6 +23,11 @@ public class EventUI : MonoBehaviour
     [Header("Channel Icons")]
     [SerializeField] private List<ChannelIconEntry> channelIcons = new();
 
+    [Header("Penalty Banner (optional)")]
+    [Tooltip("Panel que se muestra cuando el evento es un WorkIgnoredEventData. Puede ser null.")]
+    [SerializeField] private GameObject penaltyBanner;
+    [SerializeField] private TMP_Text penaltyBannerText;
+
     // fires when player presses continue after reading feedback
     public event Action OnEventResolved;
 
@@ -32,13 +38,24 @@ public class EventUI : MonoBehaviour
         continueButton.onClick.AddListener(OnContinuePressed);
         feedbackPanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        eventPanel.SetActive(false);
     }
 
     // call this to show an event to the player
     public void ShowEvent(EventData data)
     {
-        gameObject.SetActive(true);
+        // Muestra el banner de penalizacion si es un evento de trabajo ignorado
+        //bool isPenalty = data is WorkIgnoredEventData;
+        //if (penaltyBanner != null)
+        //{
+        //    penaltyBanner.SetActive(isPenalty);
+        //    if (isPenalty && penaltyBannerText != null)
+        //    {
+        //        var wd = data as WorkIgnoredEventData;
+        //        penaltyBannerText.text = $"⚠️ ¡PENALIZACIÓN! Ignoraste: {wd.ignoredTaskName}";
+        //    }
+        //}
+        eventPanel.SetActive(true);
         feedbackPanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
 
@@ -98,7 +115,7 @@ public class EventUI : MonoBehaviour
     // hide the panel 
     private void OnContinuePressed()
     {
-        gameObject.SetActive(false);
+        eventPanel.SetActive(false);
         OnEventResolved?.Invoke();
     }
 

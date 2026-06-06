@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channel: CONFIGURE DAY
   senderName: ---------
-  eventText: aewae
+  eventText: 
   stress: 0
   focus: 0
   anxiety: 0

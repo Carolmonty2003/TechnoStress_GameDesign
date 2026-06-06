@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class EventList : MonoBehaviour
+{
+    [SerializeField] private TMP_Text[] texts;
+    [SerializeField] private TMP_Text[] hourTexts;
+    [SerializeField] private EventUI eventUI;
+
+    void Start()
+    {
+        LoadEventList();
+        eventUI.OnEventResolved += () => StartCoroutine(RefreshNextFrame());
+    }
+
+    private IEnumerator RefreshNextFrame()
+    {
+        yield return null;
+        LoadEventList();
+    }
+
+    public void LoadEventList()
+    {
+        List<BaseEventData> events = new List<BaseEventData>(EventManager.Instance.EventsLeft);
+        events.Sort((a, b) => a.scheduledHour.CompareTo(b.scheduledHour));
+
+        for (int i = 0; i < texts.Length; i++) texts[i].text = "";
+        if (hourTexts != null)
+            for (int i = 0; i < hourTexts.Length; i++) hourTexts[i].text = "";
+
+        for (int i = 0; i < events.Count && i < texts.Length; i++)
+        {
+            texts[i].text = events[i].Name;
+            if (hourTexts != null && i < hourTexts.Length)
+                hourTexts[i].text = events[i].scheduledHour + ":00";
+        }
+    }
+}
+
