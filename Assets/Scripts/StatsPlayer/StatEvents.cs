@@ -13,6 +13,7 @@ public class StatEvents
 
     public event Action OnGameOver;
     public event Action OnDayEnded;
+    public event Action OnForceSleep;
 
     public void StressChanged(float value)          => OnStressChanged?.Invoke(value);
     public void FocusChanged(float value)           => OnFocusChanged?.Invoke(value);
@@ -23,4 +24,5 @@ public class StatEvents
 
     public void GameOver()  => OnGameOver?.Invoke();
     public void DayEnded()  => OnDayEnded?.Invoke();
+    public void ForceSleep() => OnForceSleep?.Invoke();
 }

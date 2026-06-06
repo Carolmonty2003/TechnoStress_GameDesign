@@ -56,6 +56,7 @@ public class EventManager : MonoBehaviour
     {
         Debug.Log("All events done");
         // here you can call PhaseController, show day summary, etc
+        PhaseController.Instance.AllEventsDone();
     }
 
     public void PhaseDone()
