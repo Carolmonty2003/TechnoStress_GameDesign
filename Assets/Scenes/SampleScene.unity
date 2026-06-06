@@ -1432,6 +1432,7 @@ GameObject:
   - component: {fileID: 532645133}
   - component: {fileID: 532645132}
   - component: {fileID: 532645131}
+  - component: {fileID: 532645134}
   m_Layer: 5
   m_Name: Mood
   m_TagString: Untagged
@@ -1554,9 +1555,34 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -74, y: -2339}
-  m_SizeDelta: {x: 400, y: 150}
+  m_AnchoredPosition: {x: -74, y: -1990.7356}
+  m_SizeDelta: {x: 415.975, y: 715.53}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &532645134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532645130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb971dd7c67d1a149ae264999e5663dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tips:
+  - type: 0
+    text: "Aprovecha la calma para crear h\xE1bitos: rutinas, metas peque\xF1as y
+      descansos."
+  - type: 1
+    text: Protege tiempo para una sola tares y silecia distracciones.
+  - type: 2
+    text: "Prioriza en vez de reaccionar a todo; decir NO tambi\xE9n es organizarte."
+  - type: 3
+    text: 'Un descanso no basta: pide ayuda y reduce pantallas.'
+  - type: 5
+    text: "Parar a ordenar antes de actuar; reduce la hiperconexi\xF3n."
+  text: {fileID: 532645131}
 --- !u!1 &542768907
 GameObject:
   m_ObjectHideFlags: 0
@@ -4427,6 +4453,8 @@ MonoBehaviour:
   channelIcons:
   - key: email
     sprite: {fileID: 5045460735251563706, guid: acc067285a9ca6f4498054ba4cf59aa7, type: 3}
+  penaltyBanner: {fileID: 0}
+  penaltyBannerText: {fileID: 0}
 --- !u!114 &1367599263
 MonoBehaviour:
   m_ObjectHideFlags: 0
