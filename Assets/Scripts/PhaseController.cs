@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Utils;
 using TMPro;
+using System;
 
 public class PhaseController : Singleton<PhaseController>
 {
@@ -14,6 +15,8 @@ public class PhaseController : Singleton<PhaseController>
     private bool allEventsDone = false;
 
     [SerializeField] private TMP_Text hourText;
+
+    public Action OnTimeSpent;
 
     void Awake()
     {
@@ -32,6 +35,7 @@ public class PhaseController : Singleton<PhaseController>
         if (totalTime > 24 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 20);
         else if (totalTime > 23 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 10);
         hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":00";
+        OnTimeSpent?.Invoke();
         return true;
     }
 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class BaseEventData : ScriptableObject
 {
+    public string Name;
+
     [Header("Event Content")]
     public string channel = "email";
     public string senderName;
