@@ -22,6 +22,11 @@ public class EventUI : MonoBehaviour
     [Header("Channel Icons")]
     [SerializeField] private List<ChannelIconEntry> channelIcons = new();
 
+    [Header("Penalty Banner (optional)")]
+    [Tooltip("Panel que se muestra cuando el evento es un WorkIgnoredEventData. Puede ser null.")]
+    [SerializeField] private GameObject penaltyBanner;
+    [SerializeField] private TMP_Text penaltyBannerText;
+
     // fires when player presses continue after reading feedback
     public event Action OnEventResolved;
 
@@ -38,6 +43,17 @@ public class EventUI : MonoBehaviour
     // call this to show an event to the player
     public void ShowEvent(EventData data)
     {
+        // Muestra el banner de penalizacion si es un evento de trabajo ignorado
+        bool isPenalty = data is WorkIgnoredEventData;
+        if (penaltyBanner != null)
+        {
+            penaltyBanner.SetActive(isPenalty);
+            if (isPenalty && penaltyBannerText != null)
+            {
+                var wd = data as WorkIgnoredEventData;
+                penaltyBannerText.text = $"⚠️ ¡PENALIZACIÓN! Ignoraste: {wd.ignoredTaskName}";
+            }
+        }
         gameObject.SetActive(true);
         feedbackPanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
