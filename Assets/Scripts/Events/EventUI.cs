@@ -44,16 +44,16 @@ public class EventUI : MonoBehaviour
     public void ShowEvent(EventData data)
     {
         // Muestra el banner de penalizacion si es un evento de trabajo ignorado
-        bool isPenalty = data is WorkIgnoredEventData;
-        if (penaltyBanner != null)
-        {
-            penaltyBanner.SetActive(isPenalty);
-            if (isPenalty && penaltyBannerText != null)
-            {
-                var wd = data as WorkIgnoredEventData;
-                penaltyBannerText.text = $"⚠️ ¡PENALIZACIÓN! Ignoraste: {wd.ignoredTaskName}";
-            }
-        }
+        //bool isPenalty = data is WorkIgnoredEventData;
+        //if (penaltyBanner != null)
+        //{
+        //    penaltyBanner.SetActive(isPenalty);
+        //    if (isPenalty && penaltyBannerText != null)
+        //    {
+        //        var wd = data as WorkIgnoredEventData;
+        //        penaltyBannerText.text = $"⚠️ ¡PENALIZACIÓN! Ignoraste: {wd.ignoredTaskName}";
+        //    }
+        //}
         gameObject.SetActive(true);
         feedbackPanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
