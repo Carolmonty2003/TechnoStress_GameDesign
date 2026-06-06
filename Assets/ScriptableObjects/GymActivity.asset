@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: Rest
+  m_Name: GymActivity
   m_EditorClassIdentifier: 
-  Name: Descanso
-  channel: calendar
+  channel: email
   senderName: Yo
-  eventText: Descanso recomendado
+  eventText: "Actividad f\xEDsica saludable"
   stress: 0
   focus: 0
   anxiety: 0
@@ -27,19 +26,19 @@ MonoBehaviour:
     stress: -30
     focus: 0
     anxiety: -20
-    physicalHealth: 25
+    physicalHealth: 30
     academicProgress: 0
     digitalFatigue: -20
-    feedbackText: "Es importante tomar descansos peri\xF3dicamente para mantener
-      tu bienestar alto"
+    feedbackText: "Es importante tomar hacer ejercicio para mantener tu bienestar
+      alto. Ayuda a bajar los niveles de ansiedad y estr\xE9s."
     timeSpent: 60
   - buttonLabel: Hacerlo despues
     stress: -30
     focus: 0
     anxiety: -20
-    physicalHealth: 0
-    academicProgress: 25
+    physicalHealth: 30
+    academicProgress: 0
     digitalFatigue: -20
-    feedbackText: "Es importante tomar descansos peri\xF3dicamente para mantener
-      tu bienestar alto"
+    feedbackText: "Es importante tomar hacer ejercicio para mantener tu bienestar
+      alto. Ayuda a bajar los niveles de ansiedad y estr\xE9s."
     timeSpent: 0
