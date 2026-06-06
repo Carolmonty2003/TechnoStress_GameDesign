@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: HistoryHandIn
+  m_Name: 2 - GroupChatApuntes
   m_EditorClassIdentifier: 
-  Name: Entrega de Historia
-  channel: campus
-  senderName: Campus
-  eventText: Nueva entrega de Historia
+  Name: Chat de Grupo
+  scheduledHour: 11
+  channel: chat
+  senderName: Chat de Grupo
+  eventText: "\xBFPuedes pasar los apuntes?"
   stress: 0
   focus: 0
   anxiety: 0
@@ -24,20 +25,20 @@ MonoBehaviour:
   digitalFatigue: 0
   choices:
   - buttonLabel: Hacerlo ahora
-    stress: 10
-    focus: 10
-    anxiety: 5
+    stress: 0
+    focus: -20
+    anxiety: 0
     physicalHealth: 0
-    academicProgress: 30
-    digitalFatigue: 20
-    feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
-    timeSpent: 120
-  - buttonLabel: Hacerlo despues
-    stress: 20
-    focus: -10
-    anxiety: 5
+    academicProgress: -10
+    digitalFatigue: 10
+    feedbackText: "Has atendido algo r\xE1pido, pero no lo m\xE1s importante."
+    timeSpent: 60
+  - buttonLabel: "Hacerlo despu\xE9s"
+    stress: 0
+    focus: 0
+    anxiety: 0
     physicalHealth: 0
-    academicProgress: -25
+    academicProgress: 0
     digitalFatigue: 0
-    feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
+    feedbackText: "Has sabido priorizar las tareas m\xE1s relevantes"
     timeSpent: 0

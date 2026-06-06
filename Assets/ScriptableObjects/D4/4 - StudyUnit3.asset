@@ -10,33 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: DesignHandIn
+  m_Name: 4 - StudyUnit3
   m_EditorClassIdentifier: 
-  channel: email
-  senderName: Campus
-  eventText: "Entrega de dise\xF1o no prevista"
+  Name: 
+  scheduledHour: 15
+  channel: calendar
+  senderName: Estudio
+  eventText: Estudiar tema 3
   stress: 0
   focus: 0
   anxiety: 0
   physicalHealth: 0
-  academicProgress: 0
+  academicProgress: -10
   digitalFatigue: 0
   choices:
   - buttonLabel: Hacerlo ahora
-    stress: 10
+    stress: 5
     focus: 10
-    anxiety: 5
+    anxiety: 10
     physicalHealth: 0
-    academicProgress: 30
-    digitalFatigue: 20
-    feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
-    timeSpent: 180
-  - buttonLabel: Hacerlo despues
+    academicProgress: 15
+    digitalFatigue: 0
+    feedbackText: "Has atendido a la prioridad m\xE1s importante"
+    timeSpent: 120
+  - buttonLabel: "Hacerlo despu\xE9s"
     stress: 30
-    focus: -10
-    anxiety: 30
+    focus: -15
+    anxiety: 0
     physicalHealth: 0
-    academicProgress: -40
-    digitalFatigue: 20
-    feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
+    academicProgress: -20
+    digitalFatigue: 0
+    feedbackText: "Has dejado atr\xE1s una tarea clave"
     timeSpent: 0
