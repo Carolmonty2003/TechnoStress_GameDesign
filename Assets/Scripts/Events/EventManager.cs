@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 // holds the list of events for the day and shows them one by one
-public class EventManager : MonoBehaviour
+public class EventManager : Singleton<EventManager>
 {
     [SerializeField] private EventUI eventUI;
     [SerializeField] private SortingEventUI sortingEventUI;
     [SerializeField] private List<BaseEventData> events = new();
+    public List<BaseEventData> EventsLeft {  get { return events.GetRange(currentIndex, events.Count - currentIndex); } }
 
     private int currentIndex = 0;
 
@@ -14,6 +16,8 @@ public class EventManager : MonoBehaviour
 
     private void Start()
     {
+        InitSingleton();
+        eventUI.OnEventResolved += () => { currentIndex++; };
         eventUI.OnEventResolved += ShowNextEvent;
         if (sortingEventUI != null)
         {
@@ -48,7 +52,6 @@ public class EventManager : MonoBehaviour
                 return;
             }
         }
-        currentIndex++;
     }
 
     // called when all events of the day are finished
