@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: PsicologyClass
+  m_Name: 2 - AlgebraClass
   m_EditorClassIdentifier: 
+  Name: 
+  scheduledHour: 11
   channel: campus
   senderName: Universidad
-  eventText: 'Clase de Psicologia
+  eventText: 'Clase de Algebra
 
 '
   stress: 0

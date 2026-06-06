@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: GroupChatTrabajo
+  m_Name: 3 - EmailPromotional
   m_EditorClassIdentifier: 
+  Name: 
+  scheduledHour: 12
   channel: email
   senderName: Chat de Grupo
-  eventText: "\xBFQuedamos para el trabajo?"
+  eventText: "60 % en la matr\xEDcula de el grupo estudiantil de algebra"
   stress: 0
   focus: 0
   anxiety: 0
@@ -30,7 +32,7 @@ MonoBehaviour:
     academicProgress: -10
     digitalFatigue: 10
     feedbackText: "Has atendido algo r\xE1pido, pero no lo m\xE1s importante."
-    timeSpent: 60
+    timeSpent: 30
   - buttonLabel: "Hacerlo despu\xE9s"
     stress: 0
     focus: 0
