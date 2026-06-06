@@ -10,36 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
-  m_Name: HistoryEmail
+  m_Name: 2 - AlgebraClass
   m_EditorClassIdentifier: 
-  Name: "Notificaci\xF3n de Historia"
-  channel: email
-  senderName: Profe Juancho
-  eventText: La entrega cuenta para nota
+  Name: 
+  scheduledHour: 11
+  channel: campus
+  senderName: Universidad
+  eventText: 'Clase de Algebra
+
+'
   stress: 0
   focus: 0
   anxiety: 0
   physicalHealth: 0
-  academicProgress: 0
+  academicProgress: -10
   digitalFatigue: 0
   choices:
   - buttonLabel: Hacerlo ahora
-    stress: 10
+    stress: 5
     focus: 10
     anxiety: 10
     physicalHealth: 0
     academicProgress: 15
-    digitalFatigue: 5
-    feedbackText: "Es relevante mantenerse atenta a las noticias del campus para
-      no quedarse atr\xE1s"
-    timeSpent: 60
-  - buttonLabel: Hacerlo despues
-    stress: 25
-    focus: -10
-    anxiety: 20
-    physicalHealth: 0
-    academicProgress: -15
     digitalFatigue: 0
-    feedbackText: "Es relevante mantenerse atenta a las noticias del campus para
-      no quedarse atr\xE1s"
+    feedbackText: "Has atendido a la prioridad m\xE1s importante"
+    timeSpent: 120
+  - buttonLabel: "Hacerlo despu\xE9s"
+    stress: 30
+    focus: -15
+    anxiety: 0
+    physicalHealth: 0
+    academicProgress: -20
+    digitalFatigue: 0
+    feedbackText: "Has dejado atr\xE1s una tarea clave"
     timeSpent: 0
