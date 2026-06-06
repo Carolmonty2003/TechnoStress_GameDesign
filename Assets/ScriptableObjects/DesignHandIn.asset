@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
+  m_Name: DesignHandIn
+  m_EditorClassIdentifier: 
+  channel: email
+  senderName: Campus
+  eventText: "Entrega de dise\xF1o no prevista"
+  stress: 0
+  focus: 0
+  anxiety: 0
+  physicalHealth: 0
+  academicProgress: 0
+  digitalFatigue: 0
+  choices:
+  - buttonLabel: Hacerlo ahora
+    stress: 10
+    focus: 10
+    anxiety: 5
+    physicalHealth: 0
+    academicProgress: 30
+    digitalFatigue: 20
+    feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
+    timeSpent: 180
+  - buttonLabel: Hacerlo despues
+    stress: 30
+    focus: -10
+    anxiety: 30
+    physicalHealth: 0
+    academicProgress: -40
+    digitalFatigue: 20
+    feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
+    timeSpent: 0
