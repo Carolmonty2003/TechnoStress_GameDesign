@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,27 +12,29 @@ public class EventList : MonoBehaviour
     void Start()
     {
         LoadEventList();
-        eventUI.OnEventResolved += LoadEventList;
-        PhaseController.Instance.OnTimeSpent += LoadEventList;
+        eventUI.OnEventResolved += () => StartCoroutine(RefreshNextFrame());
+    }
+
+    private IEnumerator RefreshNextFrame()
+    {
+        yield return null;
+        LoadEventList();
     }
 
     public void LoadEventList()
     {
-        List<BaseEventData> events = EventManager.Instance.EventsLeft;
-        int currentHour = PhaseController.Instance.CurrentHour;
+        List<BaseEventData> events = new List<BaseEventData>(EventManager.Instance.EventsLeft);
+        events.Sort((a, b) => a.scheduledHour.CompareTo(b.scheduledHour));
 
         for (int i = 0; i < texts.Length; i++) texts[i].text = "";
         if (hourTexts != null)
             for (int i = 0; i < hourTexts.Length; i++) hourTexts[i].text = "";
 
-        int slot = 0;
-        for (int i = 0; i < events.Count && slot < texts.Length; i++)
+        for (int i = 0; i < events.Count && i < texts.Length; i++)
         {
-            if (events[i].scheduledHour > currentHour) continue;
-            texts[slot].text = events[i].Name;
-            if (hourTexts != null && slot < hourTexts.Length)
-                hourTexts[slot].text = events[i].scheduledHour + ":00";
-            slot++;
+            texts[i].text = events[i].Name;
+            if (hourTexts != null && i < hourTexts.Length)
+                hourTexts[i].text = events[i].scheduledHour + ":00";
         }
     }
 }
