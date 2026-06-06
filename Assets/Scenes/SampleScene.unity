@@ -1555,8 +1555,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -74, y: -1990.7356}
-  m_SizeDelta: {x: 415.975, y: 715.53}
+  m_AnchoredPosition: {x: -126, y: -2022.6865}
+  m_SizeDelta: {x: 322.44, y: 642.043}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &532645134
 MonoBehaviour:
@@ -2321,6 +2321,7 @@ MonoBehaviour:
   startAcademicProgress: 50
   startDigitalFatigue: 0
   moodText: {fileID: 0}
+  moodTips: {fileID: 0}
   moodImage: {fileID: 0}
   moodSaturacionSprite: {fileID: 0}
   moodCansadaSprite: {fileID: 0}
@@ -4607,6 +4608,7 @@ MonoBehaviour:
   startAcademicProgress: 50
   startDigitalFatigue: 0
   moodText: {fileID: 532645131}
+  moodTips: {fileID: 532645134}
   moodImage: {fileID: 479597880}
   moodSaturacionSprite: {fileID: 5495209645281439358, guid: b11752f55283e0a44922f56367bc2a38, type: 3}
   moodCansadaSprite: {fileID: -6331246520244490166, guid: 7c3e3c2b18e27354786e35559f6bab20, type: 3}
