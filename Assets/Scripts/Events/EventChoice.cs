@@ -23,6 +23,10 @@ public class EventChoice
     [TextArea(2, 4)]
     public string feedbackText;
 
+    [Header("Minigame")]
+    [Tooltip("Si está activo, al elegir esta opción se lanza el minijuego de círculos.")]
+    public bool launchMinigame;
+
     [Header("Time spent")]
     public float timeSpent;
 }

@@ -33,6 +33,7 @@ MonoBehaviour:
     digitalFatigue: 5
     feedbackText: "Es relevante mantenerse atenta a las noticias del campus para
       no quedarse atr\xE1s"
+    launchMinigame: 1
     timeSpent: 30
   - buttonLabel: Hacerlo despues
     stress: 25
@@ -43,4 +44,5 @@ MonoBehaviour:
     digitalFatigue: 0
     feedbackText: "Es relevante mantenerse atenta a las noticias del campus para
       no quedarse atr\xE1s"
+    launchMinigame: 0
     timeSpent: 0
