@@ -8,16 +8,20 @@ public class PhaseController : Singleton<PhaseController>
     [SerializeField] private List<float> phasesDurations;
     private List<float> currentPhaseDurations;
     private int currentPhaseIndex;
-    private float totalTime = 600.0f;
+    [SerializeField] private float startTotalTime = 8 * 60;
+    private float totalTime;
+
+    private bool allEventsDone = false;
 
     [SerializeField] private TMP_Text hourText;
 
     void Awake()
     {
         InitSingleton();
+        totalTime = startTotalTime;
         currentPhaseDurations = phasesDurations;
         currentPhaseIndex = 0;
-        hourText.text = "10:00";
+        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":00";
     }
 
     public bool SpendTime(float time)
@@ -41,6 +45,21 @@ public class PhaseController : Singleton<PhaseController>
     {
         currentPhaseDurations = phasesDurations;
         currentPhaseIndex = 0;
-        totalTime = 0.0f;
+        totalTime = startTotalTime;
+        allEventsDone = false;
+        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":00";
     }
+
+    public void Rest()
+    {
+        if (totalTime < 24 * 60 && !allEventsDone)
+        {
+            SpendTime(60); //Spend 1h
+            return;
+        }
+
+        Restart();
+    }
+
+    public void AllEventsDone() => allEventsDone = true; 
 }

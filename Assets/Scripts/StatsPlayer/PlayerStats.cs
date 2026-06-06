@@ -35,6 +35,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Thresholds")]
     [SerializeField] private float stressGameOver = 100f;
+    [SerializeField] private float fatigueGameOver = 100f;
+    [SerializeField, Range(0, 100)] private float fatigueForceSleep = 80f;
     [SerializeField] private float academicProgressToWin = 60f;
 
     public Stat Stress { get; private set; }
@@ -66,6 +68,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        _events.OnForceSleep += () =>
+        {
+            PhaseController.Instance.Restart();
+        };
+
         ResetStats();
     }
 
@@ -98,6 +105,7 @@ public class PlayerStats : MonoBehaviour
     public void ApplyChanges(float stress = 0, float focus = 0, float anxiety = 0,float physicalHealth = 0, float academicProgress = 0, float digitalFatigue = 0)
     {
         float prevStress = Stress.Value;
+        float prevFatigue = DigitalFatigue.Value;
 
         Stress.Add(stress);
         Focus.Add(focus);
@@ -108,8 +116,11 @@ public class PlayerStats : MonoBehaviour
 
         BroadcastAll();
 
-        if (Stress.CrossedAbove(stressGameOver, prevStress))
+        if (Stress.CrossedAbove(stressGameOver, prevStress) || DigitalFatigue.CrossedAbove(fatigueGameOver, prevFatigue))
             _events.GameOver();
+
+        if (DigitalFatigue.CrossedAbove(fatigueForceSleep, prevFatigue)) 
+            _events.ForceSleep();
     }
 
     public void EndDay() => _events.DayEnded();
