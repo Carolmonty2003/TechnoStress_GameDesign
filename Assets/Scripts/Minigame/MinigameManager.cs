@@ -15,6 +15,9 @@ public class MinigameManager : MonoBehaviour
     [Tooltip("Duración del minijuego en segundos.")]
     public float gameDuration = 30f;
 
+    [Tooltip("Si está activo, el minijuego arranca solo al cargar la escena. Desactívalo cuando lo controla MinigameController.")]
+    public bool autoStart = false;
+
     // ── Estado ───────────────────────────────────────────────────────────────
     public bool  IsPlaying    { get; private set; }
     public int   Score        { get; private set; }
@@ -44,7 +47,8 @@ public class MinigameManager : MonoBehaviour
     void Start()
     {
         spawner = FindFirstObjectByType<CircleSpawner>();
-        StartGame();
+        if (autoStart)
+            StartGame();
     }
 
     void Update()

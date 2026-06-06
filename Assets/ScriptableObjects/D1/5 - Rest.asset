@@ -33,6 +33,7 @@ MonoBehaviour:
     digitalFatigue: -20
     feedbackText: "Es importante tomar descansos peri\xF3dicamente para mantener
       tu bienestar alto"
+    launchMinigame: 1
     timeSpent: 60
   - buttonLabel: Hacerlo despues
     stress: -30
@@ -43,4 +44,5 @@ MonoBehaviour:
     digitalFatigue: -20
     feedbackText: "Es importante tomar descansos peri\xF3dicamente para mantener
       tu bienestar alto"
+    launchMinigame: 0
     timeSpent: 0

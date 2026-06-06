@@ -7,6 +7,7 @@ public class EventManager : Singleton<EventManager>
 {
     [SerializeField] private EventUI eventUI;
     [SerializeField] private SortingEventUI sortingEventUI;
+    [SerializeField] private MinigameController minigameController;
     [SerializeField] private List<BaseEventData> events = new();
     public List<BaseEventData> EventsLeft {  get { return events.GetRange(currentIndex, events.Count - currentIndex); } }
 
@@ -28,6 +29,11 @@ public class EventManager : Singleton<EventManager>
         if (sortingEventUI != null)
         {
             sortingEventUI.OnEventResolved += ShowNextEvent;
+        }
+        if (minigameController != null)
+        {
+            minigameController.OnEventResolved += () => { currentIndex++; };
+            minigameController.OnEventResolved += ShowNextEvent;
         }
         ShowNextEvent();
     }
@@ -67,6 +73,19 @@ public class EventManager : Singleton<EventManager>
                 currentIndex++;
                 ShowNextEvent();
                 return;
+            }
+        }
+        else if (currentEvent is MinigameEventData)
+        {
+            if (minigameController != null)
+            {
+                minigameController.LaunchMinigame();
+            }
+            else
+            {
+                // Si no hay controlador asignado, se salta el evento
+                currentIndex++;
+                ShowNextEvent();
             }
         }
     }

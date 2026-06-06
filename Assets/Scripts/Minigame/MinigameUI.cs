@@ -29,7 +29,7 @@ public class MinigameUI : MonoBehaviour
     public Button restartButton;
 
     // ─────────────────────────────────────────────────────────────────────────
-    void Start()
+    void OnEnable()
     {
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
@@ -47,9 +47,9 @@ public class MinigameUI : MonoBehaviour
             restartButton.onClick.AddListener(OnRestartClicked);
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
-        // Limpiar listeners para evitar errores si el objeto se destruye
+        // Limpiar listeners para evitar errores si el objeto se desactiva
         if (MinigameManager.Instance != null)
         {
             MinigameManager.Instance.OnTimeChanged.RemoveListener(UpdateTime);
