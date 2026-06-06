@@ -17,6 +17,7 @@ public class PhaseController : Singleton<PhaseController>
     [SerializeField] private TMP_Text hourText;
 
     public Action OnTimeSpent;
+    public int CurrentHour => Mathf.FloorToInt(totalTime / 60f);
 
     void Awake()
     {

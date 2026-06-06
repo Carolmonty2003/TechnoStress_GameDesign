@@ -4,6 +4,10 @@ public abstract class BaseEventData : ScriptableObject
 {
     public string Name;
 
+    [Header("Schedule")]
+    [Tooltip("Hora del dia en la que aparece esta tarea en la lista (ej: 8 = 8:00)")]
+    public int scheduledHour = 8;
+
     [Header("Event Content")]
     public string channel = "email";
     public string senderName;
