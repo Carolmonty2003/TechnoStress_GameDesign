@@ -25,6 +25,8 @@ public class PhaseController : Singleton<PhaseController>
         if (currentPhaseDurations[currentPhaseIndex] < time) return false;
         currentPhaseDurations[currentPhaseIndex] -= time;
         totalTime += time;
+        if (totalTime > 24 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 20);
+        else if (totalTime > 23 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 10);
         hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":00";
         return true;
     }
