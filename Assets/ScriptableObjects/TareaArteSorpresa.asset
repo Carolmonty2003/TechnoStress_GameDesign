@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
+  m_Name: TareaArteSorpresa
+  m_EditorClassIdentifier: 
+  channel: notification
+  senderName: Martinez
+  eventText: TAREA SORPRESA! . Tienes que entregar un boceto digital antes de medianoche.
+    No estaba en el calendario... pero cuenta el doble.
+  stress: 0
+  focus: 0
+  anxiety: 0
+  physicalHealth: 0
+  academicProgress: 0
+  digitalFatigue: 0
+  choices:
+  - buttonLabel: Ponerme a ello ahora
+    stress: 15
+    focus: 20
+    anxiety: -10
+    physicalHealth: 0
+    academicProgress: 40
+    digitalFatigue: 20
+    feedbackText: "Te concentras, sacas tu tableta y entregas un boceto decente.
+      El esfuerzo vali\xF3 la pena: tu progreso acad\xE9mico sube y te sientes capaz."
+    timeSpent: 120
+  - buttonLabel: ' Hacerlo a medias (modo rush)'
+    stress: 25
+    focus: -5
+    anxiety: 15
+    physicalHealth: -5
+    academicProgress: 10
+    digitalFatigue: 30
+    feedbackText: "Entregas algo a \xFAltimo momento. El profesor nota la falta de
+      esfuerzo, pero al menos no un cero. La fatiga digital te pesa."
+    timeSpent: 60
+  - buttonLabel: No tengo tiempo, la ignoro
+    stress: 45
+    focus: -35
+    anxiety: 40
+    physicalHealth: -25
+    academicProgress: -55
+    digitalFatigue: 5
+    feedbackText: "Un cero en una tarea doble desploma tu progreso acad\xE9mico.
+      La culpa y la ansiedad te impiden concentrarte en nada m\xE1s. Hoy ha sido
+      un desastre."
+    timeSpent: 0
