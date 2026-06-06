@@ -25,18 +25,33 @@ public class PhaseController : Singleton<PhaseController>
         totalTime = startTotalTime;
         currentPhaseDurations = phasesDurations;
         currentPhaseIndex = 0;
-        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":00";
+        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":" + MakeMinutes();
+    }
+
+    private string MakeMinutes()
+    {
+        if(totalTime % 60 < 10) return "0" + (totalTime % 60).ToString();
+        else return (totalTime % 60).ToString();
     }
 
     public bool SpendTime(float time)
     {
         if (currentPhaseDurations[currentPhaseIndex] < time) return false;
         currentPhaseDurations[currentPhaseIndex] -= time;
-        totalTime += time;
+
+        totalTime += time + ((PlayerStats.Instance.FatiguePunishment) ? 30 : 0);
         if (totalTime > 24 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 20);
         else if (totalTime > 23 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 10);
-        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":00";
+
+        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":" + MakeMinutes();
         OnTimeSpent?.Invoke();
+
+        if(PlayerStats.Instance.DigitalFatigue.Value >= 80 && totalTime >= 23 * 60)
+        {
+            PlayerStats.Instance.FatiguePunishment = true;
+            Restart();
+        }
+
         return true;
     }
 
@@ -52,7 +67,7 @@ public class PhaseController : Singleton<PhaseController>
         currentPhaseIndex = 0;
         totalTime = startTotalTime;
         allEventsDone = false;
-        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":00";
+        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":" + MakeMinutes();
     }
 
     public void Rest()
@@ -60,9 +75,11 @@ public class PhaseController : Singleton<PhaseController>
         if (totalTime < 24 * 60 && !allEventsDone)
         {
             SpendTime(60); //Spend 1h
+            PlayerStats.Instance.ApplyChanges(digitalFatigue: -10, stress: -10, anxiety: -10);
             return;
         }
 
+        PlayerStats.Instance.ApplyChanges(digitalFatigue: -20, stress: -20, anxiety: -20);
         Restart();
     }
 

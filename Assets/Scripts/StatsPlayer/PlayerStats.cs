@@ -47,6 +47,7 @@ public class PlayerStats : MonoBehaviour
     public Stat AcademicProgress { get; private set; }
     public Stat DigitalFatigue { get; private set; }
 
+    public bool FatiguePunishment = false;
     private StatEvents _events => StatEvents.Instance;
 
 
