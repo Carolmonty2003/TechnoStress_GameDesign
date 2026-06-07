@@ -37,8 +37,8 @@ public class PhaseController : Singleton<PhaseController>
 
     public bool SpendTime(float time)
     {
-        if (currentPhaseDurations[currentPhaseIndex] < time) return false;
-        currentPhaseDurations[currentPhaseIndex] -= time;
+        if (currentPhaseDurations.Count > currentPhaseIndex)
+            currentPhaseDurations[currentPhaseIndex] -= time;
 
         totalTime += time + ((PlayerStats.Instance.FatiguePunishment) ? 30 : 0);
         if (totalTime > 24 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 20);

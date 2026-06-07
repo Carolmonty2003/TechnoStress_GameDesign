@@ -126,6 +126,7 @@ public class SortingEventUI : MonoBehaviour
             digitalFatigue: totalDigitalFatigue
         );
 
+
         submitButton.gameObject.SetActive(false);
         foreach (var itemGO in spawnedItems)
         {
