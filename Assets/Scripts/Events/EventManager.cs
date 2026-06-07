@@ -27,6 +27,7 @@ public class EventManager : Singleton<EventManager>
     private bool _waiting = false;
     private bool _eventInProgress = false;
     private readonly Dictionary<BaseEventData, int> _hourOverrides = new();
+    private readonly List<BaseEventData> _carryOverEvents = new();
 
     [SerializeField] PlayerStats playerStats;
 
@@ -61,6 +62,23 @@ public class EventManager : Singleton<EventManager>
         _eventInProgress = false;
         _hourOverrides.Clear();
         events = new List<BaseEventData>(days[dayIndex].events);
+
+        if (_carryOverEvents.Count > 0)
+        {
+            int hour = events.Count > 0
+                ? GetHour(events[events.Count - 1]) + GetEventDurationHours(events[events.Count - 1])
+                : 8;
+
+            foreach (BaseEventData carried in _carryOverEvents)
+            {
+                _hourOverrides[carried] = hour;
+                events.Add(carried);
+                hour += GetEventDurationHours(carried);
+            }
+            Debug.Log($"[EventManager] {_carryOverEvents.Count} pendientes añadidos al final del día {dayIndex}");
+            _carryOverEvents.Clear();
+        }
+
         events.Sort((a, b) => GetHour(a).CompareTo(GetHour(b)));
 
         OnDayLoaded?.Invoke();
@@ -69,7 +87,16 @@ public class EventManager : Singleton<EventManager>
 
     private void AdvanceDay()
     {
-        PhaseDone();
+        _carryOverEvents.Clear();
+        if (currentIndex < events.Count)
+        {
+            for (int i = currentIndex; i < events.Count; i++)
+                _carryOverEvents.Add(events[i]);
+        }
+
+        if (_carryOverEvents.Count == 0)
+            PhaseDone();
+
         currentDay++;
 
         if (currentDay >= days.Count)
