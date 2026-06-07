@@ -23,6 +23,7 @@ public class EventManager : Singleton<EventManager>
     private int currentIndex = 0;
     private int currentDay = 0;
     private bool _waiting = false;
+    private bool _eventInProgress = false;
 
     [SerializeField] PlayerStats playerStats;
 
@@ -35,20 +36,10 @@ public class EventManager : Singleton<EventManager>
 
     private void Start()
     {
-        eventUI.OnEventResolved += () => { currentIndex++; };
-        eventUI.OnEventResolved += ShowNextEvent;
+        eventUI.OnEventResolved += OnEventResolved;
 
         if (sortingEventUI != null)
-        {
-            sortingEventUI.OnEventResolved += () => { currentIndex++; };
-            sortingEventUI.OnEventResolved += ShowNextEvent;
-        }
-
-        if (minigameController != null)
-        {
-            minigameController.OnEventResolved += () => { currentIndex++; };
-            minigameController.OnEventResolved += ShowNextEvent;
-        }
+            sortingEventUI.OnEventResolved += OnEventResolved;
 
         PhaseController.Instance.OnDayEnded += AdvanceDay;
 
@@ -64,6 +55,7 @@ public class EventManager : Singleton<EventManager>
         }
 
         currentIndex = 0;
+        _eventInProgress = false;
         events = new List<BaseEventData>(days[dayIndex].events);
         events.Sort((a, b) => a.scheduledHour.CompareTo(b.scheduledHour));
 
@@ -85,8 +77,17 @@ public class EventManager : Singleton<EventManager>
         LoadDay(currentDay);
     }
 
+    private void OnEventResolved()
+    {
+        _eventInProgress = false;
+        currentIndex++;
+        ShowNextEvent();
+    }
+
     private void ShowNextEvent()
     {
+        if (_eventInProgress) return;
+
         if (currentIndex >= events.Count)
         {
             OnAllEventsDone();
@@ -105,6 +106,14 @@ public class EventManager : Singleton<EventManager>
             return;
         }
 
+        if (_waiting)
+        {
+            PhaseController.Instance.OnTimeSpent -= OnTimeAdvanced;
+            _waiting = false;
+        }
+
+        _eventInProgress = true;
+
         if (currentEvent is EventData choiceEvent)
         {
             eventUI.ShowEvent(choiceEvent);
@@ -115,6 +124,7 @@ public class EventManager : Singleton<EventManager>
                 sortingEventUI.ShowEvent(sortingEvent);
             else
             {
+                _eventInProgress = false;
                 currentIndex++;
                 ShowNextEvent();
             }
@@ -125,6 +135,7 @@ public class EventManager : Singleton<EventManager>
                 minigameController.LaunchMinigame();
             else
             {
+                _eventInProgress = false;
                 currentIndex++;
                 ShowNextEvent();
             }
