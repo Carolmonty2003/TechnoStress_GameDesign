@@ -9,7 +9,14 @@ public class EventManager : Singleton<EventManager>
     [SerializeField] private SortingEventUI sortingEventUI;
     [SerializeField] private MinigameController minigameController;
     [SerializeField] private List<BaseEventData> events = new();
-    public List<BaseEventData> EventsLeft {  get { return events.GetRange(currentIndex, events.Count - currentIndex); } }
+    public List<BaseEventData> EventsLeft
+    {
+        get
+        {
+            int safeIndex = Mathf.Clamp(currentIndex, 0, events.Count);
+            return events.GetRange(safeIndex, events.Count - safeIndex);
+        }
+    }
 
     private int currentIndex = 0;
     private bool _waiting = false;
@@ -28,12 +35,8 @@ public class EventManager : Singleton<EventManager>
         eventUI.OnEventResolved += ShowNextEvent;
         if (sortingEventUI != null)
         {
+            sortingEventUI.OnEventResolved += () => { currentIndex++; };
             sortingEventUI.OnEventResolved += ShowNextEvent;
-        }
-        if (minigameController != null)
-        {
-            minigameController.OnEventResolved += () => { currentIndex++; };
-            minigameController.OnEventResolved += ShowNextEvent;
         }
         ShowNextEvent();
     }
@@ -48,15 +51,26 @@ public class EventManager : Singleton<EventManager>
 
         BaseEventData currentEvent = events[currentIndex];
 
+        Debug.Log($"[EventManager] ShowNextEvent → index={currentIndex} evento='{currentEvent.Name}' scheduledHour={currentEvent.scheduledHour} CurrentHour={PhaseController.Instance.CurrentHour} _waiting={_waiting}");
+
         if (PhaseController.Instance.CurrentHour < currentEvent.scheduledHour)
         {
             if (!_waiting)
             {
                 _waiting = true;
                 PhaseController.Instance.OnTimeSpent += OnTimeAdvanced;
+                Debug.Log($"[EventManager] Esperando hasta las {currentEvent.scheduledHour}h (ahora son las {PhaseController.Instance.CurrentHour}h)");
             }
             return;
         }
+
+        if (_waiting)
+        {
+            PhaseController.Instance.OnTimeSpent -= OnTimeAdvanced;
+            _waiting = false;
+        }
+
+        Debug.Log($"[EventManager] Mostrando evento '{currentEvent.Name}' a las {PhaseController.Instance.CurrentHour}h (scheduledHour={currentEvent.scheduledHour})");
 
         if (currentEvent is EventData choiceEvent)
         {

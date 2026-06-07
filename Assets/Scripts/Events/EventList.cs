@@ -13,6 +13,13 @@ public class EventList : MonoBehaviour
     {
         LoadEventList();
         eventUI.OnEventResolved += () => StartCoroutine(RefreshNextFrame());
+        PhaseController.Instance.OnTimeSpent += LoadEventList;
+    }
+
+    private void OnDestroy()
+    {
+        if (PhaseController.Instance != null)
+            PhaseController.Instance.OnTimeSpent -= LoadEventList;
     }
 
     private IEnumerator RefreshNextFrame()
