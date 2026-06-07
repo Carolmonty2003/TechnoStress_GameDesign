@@ -29,4 +29,8 @@ public class EventChoice
 
     [Header("Time spent")]
     public float timeSpent;
+
+    [Header("Defer")]
+    [Tooltip("Si está activo, este evento se pospone al final del día (tras el último evento)")]
+    public bool deferToEndOfDay;
 }

@@ -43,8 +43,6 @@ public class EventUI : MonoBehaviour
 
     private void Start()
     {
-        // Al volver del minijuego: cerrar el panel del evento y avisar al EventManager
-        // Se hace en Start() para garantizar que MinigameController.Instance ya está inicializado
         if (MinigameController.Instance != null)
             MinigameController.Instance.OnEventResolved += OnMinigameReturned;
     }
@@ -58,7 +56,6 @@ public class EventUI : MonoBehaviour
     // call this to show an event to the player
     public void ShowEvent(EventData data)
     {
-        // Muestra el banner de penalizacion si es un evento de trabajo ignorado
         //bool isPenalty = data is WorkIgnoredEventData;
         //if (penaltyBanner != null)
         //{
@@ -120,9 +117,16 @@ public class EventUI : MonoBehaviour
         // Lanzar el minijuego si la opción lo indica
         if (choice.launchMinigame)
         {
-            eventPanel.SetActive(false); // ocultar el panel mientras dura el minijuego
+            eventPanel.SetActive(false);
             MinigameController.Instance?.LaunchMinigame();
-            return; // el minijuego toma el control; OnMinigameReturned() retomará el flujo
+            return;
+        }
+
+        if (choice.deferToEndOfDay)
+        {
+            eventPanel.SetActive(false);
+            EventManager.Instance.DeferCurrentEvent();
+            return; 
         }
 
         if (!string.IsNullOrEmpty(choice.feedbackText))

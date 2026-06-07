@@ -20,10 +20,13 @@ public class EventManager : Singleton<EventManager>
         }
     }
 
+    public int GetEventScheduledHour(BaseEventData e) => GetHour(e);
+
     private int currentIndex = 0;
     private int currentDay = 0;
     private bool _waiting = false;
     private bool _eventInProgress = false;
+    private readonly Dictionary<BaseEventData, int> _hourOverrides = new();
 
     [SerializeField] PlayerStats playerStats;
 
@@ -56,8 +59,9 @@ public class EventManager : Singleton<EventManager>
 
         currentIndex = 0;
         _eventInProgress = false;
+        _hourOverrides.Clear();
         events = new List<BaseEventData>(days[dayIndex].events);
-        events.Sort((a, b) => a.scheduledHour.CompareTo(b.scheduledHour));
+        events.Sort((a, b) => GetHour(a).CompareTo(GetHour(b)));
 
         OnDayLoaded?.Invoke();
         ShowNextEvent();
@@ -75,6 +79,52 @@ public class EventManager : Singleton<EventManager>
         }
 
         LoadDay(currentDay);
+    }
+
+    private int GetHour(BaseEventData e) =>
+        _hourOverrides.TryGetValue(e, out int h) ? h : e.scheduledHour;
+
+    public void DeferCurrentEvent()
+    {
+        if (currentIndex >= events.Count) return;
+
+        BaseEventData toDefer = events[currentIndex];
+
+        int newHour;
+        int lastIndex = events.Count - 1;
+
+        if (lastIndex <= currentIndex)
+        {
+            newHour = PhaseController.Instance.CurrentHour + 1;
+        }
+        else
+        {
+            BaseEventData lastEvent = events[lastIndex];
+            newHour = GetHour(lastEvent) + GetEventDurationHours(lastEvent);
+        }
+
+        _hourOverrides[toDefer] = newHour;
+
+        events.RemoveAt(currentIndex);
+        events.Add(toDefer);
+        events.Sort((a, b) => GetHour(a).CompareTo(GetHour(b)));
+
+        Debug.Log($"[EventManager] '{toDefer.Name}' diferido a las {newHour}h. Cola: {string.Join(", ", events.ConvertAll(e => $"{e.Name}({GetHour(e)}h)"))}");
+
+        _eventInProgress = false;
+        ShowNextEvent();
+    }
+
+    private int GetEventDurationHours(BaseEventData eventData)
+    {
+        if (eventData is EventData choiceEvent && choiceEvent.choices.Count > 0)
+        {
+            float maxMinutes = 0f;
+            foreach (var c in choiceEvent.choices)
+                maxMinutes = Mathf.Max(maxMinutes, c.timeSpent);
+            return Mathf.Max(1, Mathf.RoundToInt(maxMinutes / 60f));
+        }
+        return 1;
     }
 
     private void OnEventResolved()
@@ -96,7 +146,7 @@ public class EventManager : Singleton<EventManager>
 
         BaseEventData currentEvent = events[currentIndex];
 
-        if (PhaseController.Instance.CurrentHour < currentEvent.scheduledHour)
+        if (PhaseController.Instance.CurrentHour < GetHour(currentEvent))
         {
             if (!_waiting)
             {
@@ -144,7 +194,7 @@ public class EventManager : Singleton<EventManager>
 
     private void OnTimeAdvanced()
     {
-        if (PhaseController.Instance.CurrentHour >= events[currentIndex].scheduledHour)
+        if (PhaseController.Instance.CurrentHour >= GetHour(events[currentIndex]))
         {
             PhaseController.Instance.OnTimeSpent -= OnTimeAdvanced;
             _waiting = false;

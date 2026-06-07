@@ -32,7 +32,8 @@ public class EventList : MonoBehaviour
     public void LoadEventList()
     {
         List<BaseEventData> events = new List<BaseEventData>(EventManager.Instance.EventsLeft);
-        events.Sort((a, b) => a.scheduledHour.CompareTo(b.scheduledHour));
+        events.Sort((a, b) => EventManager.Instance.GetEventScheduledHour(a)
+                                   .CompareTo(EventManager.Instance.GetEventScheduledHour(b)));
 
         for (int i = 0; i < texts.Length; i++) texts[i].text = "";
         if (hourTexts != null)
@@ -42,7 +43,7 @@ public class EventList : MonoBehaviour
         {
             texts[i].text = events[i].Name;
             if (hourTexts != null && i < hourTexts.Length)
-                hourTexts[i].text = events[i].scheduledHour + ":00";
+                hourTexts[i].text = EventManager.Instance.GetEventScheduledHour(events[i]) + ":00";
         }
     }
 }
