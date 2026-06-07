@@ -37,12 +37,12 @@ MonoBehaviour:
     timeSpent: 60
     deferToEndOfDay: 1
   - buttonLabel: Hacerlo despues
-    stress: -30
+    stress: -50
     focus: 0
-    anxiety: -20
+    anxiety: -40
     physicalHealth: 0
     academicProgress: 25
-    digitalFatigue: -20
+    digitalFatigue: -40
     feedbackText: "Es importante tomar descansos peri\xF3dicamente para mantener
       tu bienestar alto"
     launchMinigame: 0
