@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
   m_Name: 2 - GroupChatTrabajo
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Chat de Grupo
   scheduledHour: 11
   channel: chat
   senderName: Chat de Grupo

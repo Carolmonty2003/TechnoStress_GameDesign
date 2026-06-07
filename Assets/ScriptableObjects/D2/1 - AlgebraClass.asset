@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a62bd6727f698d4784cbb3664317d71, type: 3}
   m_Name: 1 - AlgebraClass
   m_EditorClassIdentifier: 
-  Name: 
+  Name: 'Clase de Algebra '
   scheduledHour: 9
   channel: campus
   senderName: Universidad
