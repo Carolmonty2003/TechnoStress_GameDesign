@@ -36,6 +36,7 @@ MonoBehaviour:
       El esfuerzo vali\xF3 la pena: tu progreso acad\xE9mico sube y te sientes capaz."
     launchMinigame: 1
     timeSpent: 120
+    deferToEndOfDay: 1
   - buttonLabel: ' Hacerlo a medias (modo rush)'
     stress: 25
     focus: -5
@@ -47,6 +48,7 @@ MonoBehaviour:
       esfuerzo, pero al menos no un cero. La fatiga digital te pesa."
     launchMinigame: 0
     timeSpent: 60
+    deferToEndOfDay: 1
   - buttonLabel: No tengo tiempo, la ignoro
     stress: 45
     focus: -35
@@ -59,3 +61,4 @@ MonoBehaviour:
       un desastre."
     launchMinigame: 0
     timeSpent: 0
+    deferToEndOfDay: 0

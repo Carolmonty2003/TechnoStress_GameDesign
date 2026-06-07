@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4 - HistoryEmail
   m_EditorClassIdentifier: 
   Name: "Notificaci\xF3n de Historia"
-  scheduledHour: 13
+  scheduledHour: 14
   channel: email
   senderName: Profe Juancho
   eventText: La entrega cuenta para nota
@@ -34,7 +34,8 @@ MonoBehaviour:
     feedbackText: "Es relevante mantenerse atenta a las noticias del campus para
       no quedarse atr\xE1s"
     launchMinigame: 1
-    timeSpent: 30
+    timeSpent: 60
+    deferToEndOfDay: 1
   - buttonLabel: Hacerlo despues
     stress: 25
     focus: -10
@@ -46,3 +47,4 @@ MonoBehaviour:
       no quedarse atr\xE1s"
     launchMinigame: 0
     timeSpent: 0
+    deferToEndOfDay: 1

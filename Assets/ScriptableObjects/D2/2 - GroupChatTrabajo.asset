@@ -34,6 +34,7 @@ MonoBehaviour:
     feedbackText: "Has atendido algo r\xE1pido, pero no lo m\xE1s importante."
     launchMinigame: 1
     timeSpent: 60
+    deferToEndOfDay: 1
   - buttonLabel: "Hacerlo despu\xE9s"
     stress: 0
     focus: 0
@@ -44,3 +45,4 @@ MonoBehaviour:
     feedbackText: "Has sabido priorizar las tareas m\xE1s relevantes"
     launchMinigame: 0
     timeSpent: 0
+    deferToEndOfDay: 1

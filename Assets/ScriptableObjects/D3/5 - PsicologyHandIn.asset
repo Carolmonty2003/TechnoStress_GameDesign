@@ -34,6 +34,7 @@ MonoBehaviour:
     feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
     launchMinigame: 1
     timeSpent: 120
+    deferToEndOfDay: 1
   - buttonLabel: Hacerlo despues
     stress: 20
     focus: -10
@@ -44,3 +45,4 @@ MonoBehaviour:
     feedbackText: "Es clave mantenerse al d\xEDa para mantener tu nivel acad\xE9mico"
     launchMinigame: 0
     timeSpent: 0
+    deferToEndOfDay: 1

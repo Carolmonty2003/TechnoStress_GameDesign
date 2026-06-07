@@ -35,6 +35,7 @@ MonoBehaviour:
       tu bienestar alto"
     launchMinigame: 1
     timeSpent: 60
+    deferToEndOfDay: 1
   - buttonLabel: Hacerlo despues
     stress: -30
     focus: 0
@@ -46,3 +47,4 @@ MonoBehaviour:
       tu bienestar alto"
     launchMinigame: 0
     timeSpent: 0
+    deferToEndOfDay: 1
