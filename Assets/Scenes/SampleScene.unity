@@ -5042,9 +5042,6 @@ MonoBehaviour:
   days:
   - {fileID: 11400000, guid: 6847a7e78fc7208458fbdf4544d52952, type: 2}
   - {fileID: 11400000, guid: bfeac3e8059fda24298f017f9aa6b62f, type: 2}
-  - {fileID: 11400000, guid: 561ab8ceb21454a43b71a50f19d0b36c, type: 2}
-  - {fileID: 11400000, guid: 07eeb85d7243dec46a5558d817112b1b, type: 2}
-  - {fileID: 11400000, guid: f7b41227600bf9447b49c9f2306d37e5, type: 2}
   playerStats: {fileID: 744046143}
   endSceneName: EndGame
 --- !u!1 &1193548203

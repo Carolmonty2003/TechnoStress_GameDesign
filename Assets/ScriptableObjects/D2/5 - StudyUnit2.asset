@@ -36,11 +36,11 @@ MonoBehaviour:
     timeSpent: 120
     deferToEndOfDay: 1
   - buttonLabel: "Hacerlo despu\xE9s"
-    stress: 30
-    focus: -15
-    anxiety: 0
+    stress: 30000
+    focus: -100000
+    anxiety: 200000
     physicalHealth: 0
-    academicProgress: -20
+    academicProgress: -1000
     digitalFatigue: 0
     feedbackText: "Has dejado atr\xE1s una tarea clave"
     launchMinigame: 0
