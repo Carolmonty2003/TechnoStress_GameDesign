@@ -13,6 +13,7 @@ public class EventList : MonoBehaviour
     {
         LoadEventList();
         eventUI.OnEventResolved += () => StartCoroutine(RefreshNextFrame());
+        EventManager.Instance.OnDayLoaded += LoadEventList;
     }
 
     private IEnumerator RefreshNextFrame()

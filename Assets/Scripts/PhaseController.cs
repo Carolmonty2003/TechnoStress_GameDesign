@@ -17,6 +17,7 @@ public class PhaseController : Singleton<PhaseController>
     [SerializeField] private TMP_Text hourText;
 
     public Action OnTimeSpent;
+    public Action OnDayEnded;
     public int CurrentHour => Mathf.FloorToInt(totalTime / 60f);
 
     void Awake()
@@ -74,13 +75,20 @@ public class PhaseController : Singleton<PhaseController>
     {
         if (totalTime < 24 * 60 && !allEventsDone)
         {
-            SpendTime(60); //Spend 1h
+            SpendTime(60);
             PlayerStats.Instance.ApplyChanges(digitalFatigue: -10, stress: -10, anxiety: -10);
             return;
         }
 
         PlayerStats.Instance.ApplyChanges(digitalFatigue: -20, stress: -20, anxiety: -20);
+        EndDay();
+    }
+
+    public void EndDay()
+    {
+        allEventsDone = false;
         Restart();
+        OnDayEnded?.Invoke();
     }
 
     public void AllEventsDone() => allEventsDone = true; 
