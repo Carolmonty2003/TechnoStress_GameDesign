@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +26,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private TMP_Text moodText;
     [SerializeField] private MoodTips moodTips;
 
-    // 2. Añade la referencia a la imagen de la UI y los sprites que usarás
+    // 2. Aï¿½ade la referencia a la imagen de la UI y los sprites que usarï¿½s
     [SerializeField] private Image moodImage;
     [SerializeField] private Sprite moodSaturacionSprite;
     [SerializeField] private Sprite moodCansadaSprite;
@@ -66,6 +66,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

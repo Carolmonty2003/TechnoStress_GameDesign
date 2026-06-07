@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class EventManager : Singleton<EventManager>
@@ -30,6 +31,7 @@ public class EventManager : Singleton<EventManager>
     private readonly List<BaseEventData> _carryOverEvents = new();
 
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] private string endSceneName;
 
     public System.Action OnDayLoaded;
 
@@ -237,7 +239,10 @@ public class EventManager : Singleton<EventManager>
 
     private void OnAllDaysDone()
     {
-        Debug.Log("All days done");
+        if (!string.IsNullOrEmpty(endSceneName))
+            SceneManager.LoadScene(endSceneName);
+        else
+            Debug.LogWarning("endSceneName no está asignado en EventManager.");
     }
 
     public void PhaseDone()
