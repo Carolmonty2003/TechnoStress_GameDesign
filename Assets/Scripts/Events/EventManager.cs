@@ -7,7 +7,10 @@ public class EventManager : Singleton<EventManager>
     [SerializeField] private EventUI eventUI;
     [SerializeField] private SortingEventUI sortingEventUI;
     [SerializeField] private MinigameController minigameController;
-    [SerializeField] private List<BaseEventData> events = new();
+
+    [SerializeField] private List<DayData> days = new();
+
+    private List<BaseEventData> events = new();
     public List<BaseEventData> EventsLeft
     {
         get
@@ -16,11 +19,6 @@ public class EventManager : Singleton<EventManager>
             return events.GetRange(safeIndex, events.Count - safeIndex);
         }
     }
-
-    [SerializeField] private List<DayData> days = new();
-
-    private List<BaseEventData> events = new();
-    public List<BaseEventData> EventsLeft => events.GetRange(currentIndex, events.Count - currentIndex);
 
     private int currentIndex = 0;
     private int currentDay = 0;
@@ -39,15 +37,37 @@ public class EventManager : Singleton<EventManager>
     {
         eventUI.OnEventResolved += () => { currentIndex++; };
         eventUI.OnEventResolved += ShowNextEvent;
+
         if (sortingEventUI != null)
         {
             sortingEventUI.OnEventResolved += () => { currentIndex++; };
             sortingEventUI.OnEventResolved += ShowNextEvent;
+        }
+
         if (minigameController != null)
         {
             minigameController.OnEventResolved += () => { currentIndex++; };
             minigameController.OnEventResolved += ShowNextEvent;
         }
+
+        PhaseController.Instance.OnDayEnded += AdvanceDay;
+
+        LoadDay(0);
+    }
+
+    private void LoadDay(int dayIndex)
+    {
+        if (_waiting)
+        {
+            PhaseController.Instance.OnTimeSpent -= OnTimeAdvanced;
+            _waiting = false;
+        }
+
+        currentIndex = 0;
+        events = new List<BaseEventData>(days[dayIndex].events);
+        events.Sort((a, b) => a.scheduledHour.CompareTo(b.scheduledHour));
+
+        OnDayLoaded?.Invoke();
         ShowNextEvent();
     }
 
@@ -75,26 +95,15 @@ public class EventManager : Singleton<EventManager>
 
         BaseEventData currentEvent = events[currentIndex];
 
-        Debug.Log($"[EventManager] ShowNextEvent → index={currentIndex} evento='{currentEvent.Name}' scheduledHour={currentEvent.scheduledHour} CurrentHour={PhaseController.Instance.CurrentHour} _waiting={_waiting}");
-
         if (PhaseController.Instance.CurrentHour < currentEvent.scheduledHour)
         {
             if (!_waiting)
             {
                 _waiting = true;
                 PhaseController.Instance.OnTimeSpent += OnTimeAdvanced;
-                Debug.Log($"[EventManager] Esperando hasta las {currentEvent.scheduledHour}h (ahora son las {PhaseController.Instance.CurrentHour}h)");
             }
             return;
         }
-
-        if (_waiting)
-        {
-            PhaseController.Instance.OnTimeSpent -= OnTimeAdvanced;
-            _waiting = false;
-        }
-
-        Debug.Log($"[EventManager] Mostrando evento '{currentEvent.Name}' a las {PhaseController.Instance.CurrentHour}h (scheduledHour={currentEvent.scheduledHour})");
 
         if (currentEvent is EventData choiceEvent)
         {
@@ -150,14 +159,13 @@ public class EventManager : Singleton<EventManager>
         float stress = 0, focus = 0, anxiety = 0, physicalHealth = 0, academicProgress = 0, digitalFatigue = 0;
         for (int i = currentIndex; i < events.Count; i++)
         {
-            stress          += events[i].stress;
-            focus           += events[i].focus;
-            anxiety         += events[i].anxiety;
-            physicalHealth  += events[i].physicalHealth;
-            academicProgress+= events[i].academicProgress;
-            digitalFatigue  += events[i].digitalFatigue;
+            stress           += events[i].stress;
+            focus            += events[i].focus;
+            anxiety          += events[i].anxiety;
+            physicalHealth   += events[i].physicalHealth;
+            academicProgress += events[i].academicProgress;
+            digitalFatigue   += events[i].digitalFatigue;
         }
         playerStats.ApplyChanges(stress, focus, anxiety, physicalHealth, academicProgress, digitalFatigue);
     }
 }
-
