@@ -36,10 +36,10 @@ MonoBehaviour:
     timeSpent: 60
     deferToEndOfDay: 1
   - buttonLabel: "Hacerlo despu\xE9s"
-    stress: -10000
-    focus: -5000
-    anxiety: -4000000
-    physicalHealth: -5000
+    stress: -10
+    focus: -50
+    anxiety: -40
+    physicalHealth: -50
     academicProgress: 0
     digitalFatigue: 0
     feedbackText: "Has sabido priorizar las tareas m\xE1s relevantes"

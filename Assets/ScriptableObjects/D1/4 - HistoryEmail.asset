@@ -25,9 +25,9 @@ MonoBehaviour:
   digitalFatigue: 0
   choices:
   - buttonLabel: Hacerlo ahora
-    stress: 10
+    stress: -10
     focus: 10
-    anxiety: 10
+    anxiety: -10
     physicalHealth: 0
     academicProgress: 15
     digitalFatigue: 5

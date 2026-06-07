@@ -32,7 +32,7 @@ MonoBehaviour:
     anxiety: 10
     physicalHealth: 0
     academicProgress: 15
-    digitalFatigue: 0
+    digitalFatigue: 10
     feedbackText: "Has atendido a la prioridad m\xE1s importante"
     launchMinigame: 1
     timeSpent: 120

@@ -36,7 +36,7 @@ MonoBehaviour:
     timeSpent: 60
     deferToEndOfDay: 1
   - buttonLabel: "Hacerlo despu\xE9s"
-    stress: 0
+    stress: 20
     focus: 0
     anxiety: 50
     physicalHealth: 0

@@ -30,17 +30,17 @@ MonoBehaviour:
     anxiety: 10
     physicalHealth: 0
     academicProgress: 15
-    digitalFatigue: 0
+    digitalFatigue: 20
     feedbackText: "Has atendido a la prioridad m\xE1s importante"
     launchMinigame: 1
     timeSpent: 120
     deferToEndOfDay: 1
   - buttonLabel: "Hacerlo despu\xE9s"
-    stress: 30000
-    focus: -100000
-    anxiety: 200000
+    stress: 30
+    focus: -10
+    anxiety: 20
     physicalHealth: 0
-    academicProgress: -1000
+    academicProgress: -10
     digitalFatigue: 0
     feedbackText: "Has dejado atr\xE1s una tarea clave"
     launchMinigame: 0

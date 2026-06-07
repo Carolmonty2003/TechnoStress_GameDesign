@@ -25,12 +25,12 @@ MonoBehaviour:
   digitalFatigue: 0
   choices:
   - buttonLabel: Hacerlo ahora
-    stress: 0
-    focus: -20
-    anxiety: 0
+    stress: -5
+    focus: 20
+    anxiety: -5
     physicalHealth: 0
-    academicProgress: -10
-    digitalFatigue: 10
+    academicProgress: 10
+    digitalFatigue: 20
     feedbackText: "Has atendido algo r\xE1pido, pero no lo m\xE1s importante."
     launchMinigame: 1
     timeSpent: 60

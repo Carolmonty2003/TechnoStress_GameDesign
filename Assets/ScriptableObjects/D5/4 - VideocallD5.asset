@@ -28,11 +28,11 @@ MonoBehaviour:
   choices:
   - buttonLabel: Hacerlo ahora
     stress: 0
-    focus: 0
-    anxiety: 0
+    focus: 10
+    anxiety: 5
     physicalHealth: 0
-    academicProgress: 0
-    digitalFatigue: 0
+    academicProgress: 5
+    digitalFatigue: 10
     feedbackText: "No es lo m\xE1s importante."
     launchMinigame: 1
     timeSpent: 60
