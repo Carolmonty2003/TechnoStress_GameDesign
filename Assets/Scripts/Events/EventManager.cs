@@ -65,8 +65,12 @@ public class EventManager : Singleton<EventManager>
         _hourOverrides.Clear();
         events = new List<BaseEventData>(days[dayIndex].events);
 
+        // Ordenar primero para saber cuál es realmente el último evento del día
+        events.Sort((a, b) => GetHour(a).CompareTo(GetHour(b)));
+
         if (_carryOverEvents.Count > 0)
         {
+            // Ahora sí, el último elemento tiene la hora más alta del día
             int hour = events.Count > 0
                 ? GetHour(events[events.Count - 1]) + GetEventDurationHours(events[events.Count - 1])
                 : 8;
@@ -80,8 +84,7 @@ public class EventManager : Singleton<EventManager>
             Debug.Log($"[EventManager] {_carryOverEvents.Count} pendientes añadidos al final del día {dayIndex}");
             _carryOverEvents.Clear();
         }
-
-        events.Sort((a, b) => GetHour(a).CompareTo(GetHour(b)));
+        // Los carry-overs tienen las horas más altas, ya están al final, no hace falta re-ordenar
 
         OnDayLoaded?.Invoke();
         ShowNextEvent();
