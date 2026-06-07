@@ -43,7 +43,10 @@ public class EventList : MonoBehaviour
         {
             texts[i].text = events[i].Name;
             if (hourTexts != null && i < hourTexts.Length)
-                hourTexts[i].text = EventManager.Instance.GetEventScheduledHour(events[i]) + ":00";
+            {
+                int h = EventManager.Instance.GetEventScheduledHour(events[i]) % 24;
+                hourTexts[i].text = h + ":00";
+            }
         }
     }
 }

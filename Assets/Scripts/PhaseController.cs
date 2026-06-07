@@ -26,13 +26,19 @@ public class PhaseController : Singleton<PhaseController>
         totalTime = startTotalTime;
         currentPhaseDurations = phasesDurations;
         currentPhaseIndex = 0;
-        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":" + MakeMinutes();
+        hourText.text = MakeHour() + ":" + MakeMinutes();
+    }
+
+    private string MakeHour()
+    {
+        int h = Mathf.FloorToInt(totalTime / 60f) % 24;
+        return h.ToString();
     }
 
     private string MakeMinutes()
     {
-        if(totalTime % 60 < 10) return "0" + (totalTime % 60).ToString();
-        else return (totalTime % 60).ToString();
+        int m = Mathf.FloorToInt(totalTime % 60);
+        return m < 10 ? "0" + m : m.ToString();
     }
 
     public bool SpendTime(float time)
@@ -44,7 +50,7 @@ public class PhaseController : Singleton<PhaseController>
         if (totalTime > 24 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 20);
         else if (totalTime > 23 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 10);
 
-        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":" + MakeMinutes();
+        hourText.text = MakeHour() + ":" + MakeMinutes();
         OnTimeSpent?.Invoke();
 
         if(PlayerStats.Instance.DigitalFatigue.Value >= 80 && totalTime >= 23 * 60)
@@ -68,7 +74,7 @@ public class PhaseController : Singleton<PhaseController>
         currentPhaseIndex = 0;
         totalTime = startTotalTime;
         allEventsDone = false;
-        hourText.text = Mathf.FloorToInt(totalTime / 60.0f).ToString() + ":" + MakeMinutes();
+        hourText.text = MakeHour() + ":" + MakeMinutes();
     }
 
     public void Rest()
