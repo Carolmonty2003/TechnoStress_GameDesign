@@ -47,8 +47,17 @@ public class PhaseController : Singleton<PhaseController>
             currentPhaseDurations[currentPhaseIndex] -= time;
 
         totalTime += time + ((PlayerStats.Instance.FatiguePunishment) ? 30 : 0);
-        if (totalTime > 24 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 20);
-        else if (totalTime > 23 * 60) PlayerStats.Instance.ApplyChanges(digitalFatigue: 10);
+
+        if (totalTime >= 24 * 60)
+        {
+            PlayerStats.Instance.ApplyChanges(digitalFatigue: 20);
+            // Notificar fatiga extrema por trabajar pasada la medianoche
+            DayConditionManager.Instance?.NotifyMidnightWork();
+        }
+        else if (totalTime > 23 * 60)
+        {
+            PlayerStats.Instance.ApplyChanges(digitalFatigue: 10);
+        }
 
         hourText.text = MakeHour() + ":" + MakeMinutes();
         OnTimeSpent?.Invoke();
